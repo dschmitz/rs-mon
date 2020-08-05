@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+message Telemetry {
+    uint64 ts = 1;
+    LoadAvg load_avg = 2;
+    Cpu cpu = 3;
+    Memory memory = 4;
+    Swap swap = 5;
+    repeated Disk disk = 6;
+
+    message LoadAvg {
+        double one = 1;
+        double five = 2;
+        double fifteen = 3;
+    }
+
+    message Cpu {
+        float usage = 1;
+        float temperature = 2;
+    }
+
+    message Memory {
+        uint64 memory_total = 1;
+        uint64 memory_used = 2;
+        float  memory_used_percent = 3;
+    }
+
+    message Swap {
+        uint64 swap_total = 1;
+        uint64 swap_used = 2;
+        float  swap_used_percent = 3;
+    }
+
+    message Disk {
+        string mount_point = 1;
+        uint64 space_total = 2;
+        uint64 space_used = 3;
+        float  space_used_percent = 4;
+    }
+}
